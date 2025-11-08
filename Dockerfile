@@ -54,6 +54,14 @@ RUN /venv/bin/huggingface-cli download Qwen/Qwen2.5-1.5B \
 # --- 7. 安装 VibeVoice 自定义节点 ---
 RUN git clone https://github.com/Enemyx-net/VibeVoice-ComfyUI.git $COMFYUI_PATH/custom_nodes/VibeVoice-ComfyUI
 
+# --- 8. 安装 VibeVoice Python 依赖 ---
+RUN /venv/bin/python -m pip install \
+    diffusers \
+    accelerate \
+    transformers>=4.51.3 \
+    sentencepiece \
+    soundfile
+
 # --- 8. 复制脚本并设置权限 ---
 # --- 关键修改：不再复制 workflow_api.json ---
 COPY src/start.sh /root/start.sh

@@ -1,0 +1,157 @@
+2025-11-08T15:48:49.085655554Z ==========
+2025-11-08T15:48:49.085811444Z == CUDA ==
+2025-11-08T15:48:49.086149545Z ==========
+2025-11-08T15:48:49.109597315Z CUDA Version 12.4.1
+2025-11-08T15:48:49.118067083Z Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+2025-11-08T15:48:49.125977910Z This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+2025-11-08T15:48:49.126004540Z By pulling and using the container, you accept the terms and conditions of this license:
+2025-11-08T15:48:49.126026230Z https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+2025-11-08T15:48:49.126065380Z A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+2025-11-08T15:48:49.237867068Z worker-comfyui: Starting ComfyUI in the background...
+2025-11-08T15:48:49.239522539Z Waiting for ComfyUI to be ready...
+2025-11-08T15:48:57.131103679Z ........[START] Security scan
+2025-11-08T15:48:57.131206059Z [DONE] Security scan
+2025-11-08T15:48:57.131230439Z ## ComfyUI-Manager: installing dependencies done.
+2025-11-08T15:48:57.131674989Z ** ComfyUI startup time: 2025-11-08 15:48:57.130
+2025-11-08T15:48:57.132202660Z ** Platform: Linux
+2025-11-08T15:48:57.132646990Z ** Python version: 3.11.10 (main, Sep  7 2024, 18:35:41) [GCC 11.4.0]
+2025-11-08T15:48:57.133060530Z ** Python executable: /venv/bin/python
+2025-11-08T15:48:57.133575661Z ** ComfyUI Path: /root/comfy/ComfyUI
+2025-11-08T15:48:57.134126801Z ** ComfyUI Base Folder Path: /root/comfy/ComfyUI
+2025-11-08T15:48:57.134398341Z ** User directory: /root/comfy/ComfyUI/user
+2025-11-08T15:48:57.134901552Z ** ComfyUI-Manager config path: /root/comfy/ComfyUI/user/default/ComfyUI-Manager/config.ini
+2025-11-08T15:48:57.135359452Z ** Log path: /root/comfy/ComfyUI/user/comfyui.log
+2025-11-08T15:49:02.205850684Z Prestartup times for custom nodes:
+2025-11-08T15:49:02.206122504Z   12.3 seconds: /root/comfy/ComfyUI/custom_nodes/ComfyUI-Manager
+2025-11-08T15:49:11.667469882Z Checkpoint files will always be loaded safely.
+2025-11-08T15:49:12.712169249Z Total VRAM 24092 MB, total RAM 257554 MB
+2025-11-08T15:49:12.712991190Z pytorch version: 2.9.0+cu128
+2025-11-08T15:49:12.715170592Z Set vram state to: NORMAL_VRAM
+2025-11-08T15:49:12.716810703Z Device: cuda:0 NVIDIA GeForce RTX 4090 : cudaMallocAsync
+2025-11-08T15:49:12.718539334Z Enabled pinned memory 244676.0
+2025-11-08T15:49:13.098642848Z working around nvidia conv3d memory bug.
+2025-11-08T15:49:19.954656428Z Using pytorch attention
+2025-11-08T15:49:33.475748630Z Python version: 3.11.10 (main, Sep  7 2024, 18:35:41) [GCC 11.4.0]
+2025-11-08T15:49:33.476240010Z ComfyUI version: 0.3.68
+2025-11-08T15:49:33.498079710Z ComfyUI frontend version: 1.28.8
+2025-11-08T15:49:33.502723324Z [Prompt Server] web root: /venv/lib/python3.11/site-packages/comfyui_frontend_package/static
+2025-11-08T15:49:41.952554263Z ### Loading: ComfyUI-Manager (V3.37)
+2025-11-08T15:49:41.955010505Z [ComfyUI-Manager] network_mode: public
+2025-11-08T15:49:42.304001361Z ### ComfyUI Version: v0.3.68-10-ga1a70362 | Released on '2025-11-07'
+2025-11-08T15:49:42.599446331Z [VibeVoice] Using embedded VibeVoice (MIT licensed)
+2025-11-08T15:49:42.618654318Z [VibeVoice] VibeVoice nodes registered successfully
+2025-11-08T15:49:42.630226858Z Import times for custom nodes:
+2025-11-08T15:49:42.631145438Z    0.0 seconds: /root/comfy/ComfyUI/custom_nodes/websocket_image_save.py
+2025-11-08T15:49:42.631710409Z    0.2 seconds: /root/comfy/ComfyUI/custom_nodes/VibeVoice-ComfyUI
+2025-11-08T15:49:42.632043549Z    0.6 seconds: /root/comfy/ComfyUI/custom_nodes/ComfyUI-Manager
+2025-11-08T15:49:43.497171289Z [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
+2025-11-08T15:49:43.611039039Z [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json
+2025-11-08T15:49:43.626795833Z [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/alter-list.json
+2025-11-08T15:49:44.143395646Z [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json
+2025-11-08T15:49:44.306842920Z [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/github-stats.json
+2025-11-08T15:49:45.996465643Z Context impl SQLiteImpl.
+2025-11-08T15:49:45.996825924Z Will assume non-transactional DDL.
+2025-11-08T15:49:46.003082539Z No target revision found.
+2025-11-08T15:49:46.081294188Z Starting server
+2025-11-08T15:49:46.083657400Z To see the GUI go to: http://0.0.0.0:8188
+2025-11-08T15:49:46.321082009Z ..............................................ComfyUI is ready and listening.
+2025-11-08T15:49:46.321154529Z worker-comfyui: Starting RunPod Handler now that ComfyUI is ready.
+2025-11-08T15:49:49.158245949Z FETCH ComfyRegistry Data: 5/105
+2025-11-08T15:49:52.707654416Z FETCH ComfyRegistry Data: 10/105
+2025-11-08T15:49:54.016567075Z ComfyUI Dynamic Workflow Worker (最终版) 启动中...
+2025-11-08T15:49:54.016670085Z --- Starting Serverless Worker |  Version 1.7.13 ---
+2025-11-08T15:49:54.390568584Z {"requestId": null, "message": "Jobs in queue: 1", "level": "INFO"}
+2025-11-08T15:49:54.390874914Z {"requestId": null, "message": "Jobs in progress: 1", "level": "INFO"}
+2025-11-08T15:49:54.391944735Z {"requestId": "17714675-8279-4f8a-b8e7-eae753c96b0f-e1", "message": "Started.", "level": "INFO"}
+2025-11-08T15:49:55.190754386Z got prompt
+2025-11-08T15:49:55.196394391Z [VibeVoice] Found 1 VibeVoice model(s) available
+2025-11-08T15:49:55.198915853Z Failed to validate prompt for output 11:
+2025-11-08T15:49:55.199219234Z * VibeVoiceMultipleSpeakersNode 7:
+2025-11-08T15:49:55.199751474Z   - Required input is missing: seed
+2025-11-08T15:49:55.199852494Z   - Required input is missing: diffusion_steps
+2025-11-08T15:49:55.200086725Z   - Required input is missing: model
+2025-11-08T15:49:55.200482235Z   - Required input is missing: attention_type
+2025-11-08T15:49:55.201092485Z   - Required input is missing: cfg_scale
+2025-11-08T15:49:55.201182075Z   - Required input is missing: use_sampling
+2025-11-08T15:49:55.201389186Z   - Required input is missing: quantize_llm
+2025-11-08T15:49:55.201728676Z   - Required input is missing: free_memory_after_generate
+2025-11-08T15:49:55.201964806Z Output will be ignored
+2025-11-08T15:49:55.202321716Z invalid prompt: {'type': 'prompt_outputs_failed_validation', 'message': 'Prompt outputs failed validation', 'details': '', 'extra_info': {}}
+2025-11-08T15:49:55.526576011Z {"requestId": "17714675-8279-4f8a-b8e7-eae753c96b0f-e1", "message": "Finished.", "level": "INFO"}
+2025-11-08T15:49:57.796186824Z FETCH ComfyRegistry Data: 15/105
+2025-11-08T15:50:02.881996269Z FETCH ComfyRegistry Data: 20/105
+2025-11-08T15:50:05.965868227Z FETCH ComfyRegistry Data: 25/105
+2025-11-08T15:50:09.075178987Z FETCH ComfyRegistry Data: 30/105
+2025-11-08T16:00:06.041899471Z {"requestId": null, "message": "Jobs in queue: 1", "level": "INFO"}
+2025-11-08T16:00:06.042427422Z {"requestId": null, "message": "Jobs in progress: 1", "level": "INFO"}
+2025-11-08T16:00:06.042905752Z {"requestId": "c398e3c8-5d60-4c06-9dd1-161aa91151e2-e1", "message": "Started.", "level": "INFO"}
+2025-11-08T16:00:06.640838808Z got prompt
+2025-11-08T16:00:07.771662734Z FETCH ComfyRegistry Data: 35/105
+2025-11-08T16:00:07.872550599Z APEX FusedRMSNorm not available, using native implementation
+2025-11-08T16:00:07.941045827Z [VibeVoice] Embedded VibeVoice import failed: Failed to import DPMSolverMultistepScheduler from /root/comfy/ComfyUI/custom_nodes/VibeVoice-ComfyUI/vvembed/schedule. There might be a conflict with another Python package. Original error: No module named 'diffusers'
+2025-11-08T16:00:07.942474708Z [VibeVoice] Failed to load VibeVoice model: VibeVoice embedded module import failed. Please ensure the vvembed folder exists and transformers>=4.51.3 is installed.
+2025-11-08T16:00:07.942994079Z [VibeVoice] Multi-speaker speech generation failed: Model loading failed: VibeVoice embedded module import failed. Please ensure the vvembed folder exists and transformers>=4.51.3 is installed.
+2025-11-08T16:00:07.952420007Z !!! Exception during processing !!! Error generating multi-speaker speech: Model loading failed: VibeVoice embedded module import failed. Please ensure the vvembed folder exists and transformers>=4.51.3 is installed.
+2025-11-08T16:00:07.972369564Z Traceback (most recent call last):
+2025-11-08T16:00:07.972430593Z   File "/root/comfy/ComfyUI/custom_nodes/VibeVoice-ComfyUI/vvembed/modular/modeling_vibevoice_inference.py", line 50, in <module>
+2025-11-08T16:00:07.972450764Z     from schedule.dpm_solver import DPMSolverMultistepScheduler
+2025-11-08T16:00:07.972470044Z   File "/root/comfy/ComfyUI/custom_nodes/VibeVoice-ComfyUI/vvembed/schedule/dpm_solver.py", line 23, in <module>
+2025-11-08T16:00:07.972488084Z     from diffusers.configuration_utils import ConfigMixin, register_to_config
+2025-11-08T16:00:07.972507804Z ModuleNotFoundError: No module named 'diffusers'
+2025-11-08T16:00:07.972544224Z During handling of the above exception, another exception occurred:
+2025-11-08T16:00:07.972588064Z Traceback (most recent call last):
+2025-11-08T16:00:07.972699234Z   File "/root/comfy/ComfyUI/custom_nodes/VibeVoice-ComfyUI/nodes/base_vibevoice.py", line 467, in _check_dependencies
+2025-11-08T16:00:07.972718824Z     from modular.modeling_vibevoice_inference import VibeVoiceForConditionalGenerationInference
+2025-11-08T16:00:07.972746894Z   File "/root/comfy/ComfyUI/custom_nodes/VibeVoice-ComfyUI/vvembed/modular/modeling_vibevoice_inference.py", line 52, in <module>
+2025-11-08T16:00:07.972853684Z     raise ImportError(
+2025-11-08T16:00:07.972874944Z ImportError: Failed to import DPMSolverMultistepScheduler from /root/comfy/ComfyUI/custom_nodes/VibeVoice-ComfyUI/vvembed/schedule. There might be a conflict with another Python package. Original error: No module named 'diffusers'
+2025-11-08T16:00:07.973008154Z During handling of the above exception, another exception occurred:
+2025-11-08T16:00:07.973148414Z Traceback (most recent call last):
+2025-11-08T16:00:07.973166534Z   File "/root/comfy/ComfyUI/custom_nodes/VibeVoice-ComfyUI/nodes/base_vibevoice.py", line 885, in load_model
+2025-11-08T16:00:07.973190024Z     vibevoice, VibeVoiceInferenceModel = self._check_dependencies()
+2025-11-08T16:00:07.973292644Z                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-11-08T16:00:07.973409785Z   File "/root/comfy/ComfyUI/custom_nodes/VibeVoice-ComfyUI/nodes/base_vibevoice.py", line 484, in _check_dependencies
+2025-11-08T16:00:07.973485874Z     raise Exception(
+2025-11-08T16:00:07.973564894Z Exception: VibeVoice embedded module import failed. Please ensure the vvembed folder exists and transformers>=4.51.3 is installed.
+2025-11-08T16:00:07.973686855Z During handling of the above exception, another exception occurred:
+2025-11-08T16:00:07.973731795Z Traceback (most recent call last):
+2025-11-08T16:00:07.973800715Z   File "/root/comfy/ComfyUI/custom_nodes/VibeVoice-ComfyUI/nodes/multi_speaker_node.py", line 240, in generate_speech
+2025-11-08T16:00:07.973823025Z     self.load_model(model, model_path, attention_type, quantize_llm=quantize_llm, lora_path=lora_path)
+2025-11-08T16:00:07.973846435Z   File "/root/comfy/ComfyUI/custom_nodes/VibeVoice-ComfyUI/nodes/base_vibevoice.py", line 1302, in load_model
+2025-11-08T16:00:07.973916385Z     raise Exception(f"Model loading failed: {str(e)}")
+2025-11-08T16:00:07.973935015Z Exception: Model loading failed: VibeVoice embedded module import failed. Please ensure the vvembed folder exists and transformers>=4.51.3 is installed.
+2025-11-08T16:00:07.974036565Z During handling of the above exception, another exception occurred:
+2025-11-08T16:00:07.974216015Z Traceback (most recent call last):
+2025-11-08T16:00:07.974375915Z   File "/root/comfy/ComfyUI/execution.py", line 510, in execute
+2025-11-08T16:00:07.974564295Z     output_data, output_ui, has_subgraph, has_pending_tasks = await get_output_data(prompt_id, unique_id, obj, input_data_all, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, hidden_inputs=hidden_inputs)
+2025-11-08T16:00:07.974683675Z                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-11-08T16:00:07.974755495Z   File "/root/comfy/ComfyUI/execution.py", line 324, in get_output_data
+2025-11-08T16:00:07.974773736Z     return_values = await _async_map_node_over_list(prompt_id, unique_id, obj, input_data_all, obj.FUNCTION, allow_interrupt=True, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, hidden_inputs=hidden_inputs)
+2025-11-08T16:00:07.974794686Z                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-11-08T16:00:07.974817886Z   File "/root/comfy/ComfyUI/execution.py", line 298, in _async_map_node_over_list
+2025-11-08T16:00:07.974894136Z     await process_inputs(input_dict, i)
+2025-11-08T16:00:07.974998306Z   File "/root/comfy/ComfyUI/execution.py", line 286, in process_inputs
+2025-11-08T16:00:07.975129036Z     result = f(**inputs)
+2025-11-08T16:00:07.975200256Z              ^^^^^^^^^^^
+2025-11-08T16:00:07.975223346Z   File "/root/comfy/ComfyUI/custom_nodes/VibeVoice-ComfyUI/nodes/multi_speaker_node.py", line 383, in generate_speech
+2025-11-08T16:00:07.975384816Z     raise Exception(f"Error generating multi-speaker speech: {str(e)}")
+2025-11-08T16:00:07.975498136Z Exception: Error generating multi-speaker speech: Model loading failed: VibeVoice embedded module import failed. Please ensure the vvembed folder exists and transformers>=4.51.3 is installed.
+2025-11-08T16:00:07.980510300Z Prompt executed in 1.33 seconds
+2025-11-08T16:00:11.575531140Z FETCH ComfyRegistry Data: 40/105
+2025-11-08T16:00:14.628296302Z FETCH ComfyRegistry Data: 45/105
+2025-11-08T16:00:17.668351082Z FETCH ComfyRegistry Data: 50/105
+2025-11-08T16:00:21.088017004Z FETCH ComfyRegistry Data: 55/105
+2025-11-08T16:00:24.979497645Z FETCH ComfyRegistry Data: 60/105
+2025-11-08T16:00:28.391181739Z FETCH ComfyRegistry Data: 65/105
+2025-11-08T16:00:31.462690356Z FETCH ComfyRegistry Data: 70/105
+2025-11-08T16:00:34.491897168Z FETCH ComfyRegistry Data: 75/105
+2025-11-08T16:00:37.616350110Z FETCH ComfyRegistry Data: 80/105
+2025-11-08T16:00:41.460175340Z FETCH ComfyRegistry Data: 85/105
+2025-11-08T16:00:44.490878663Z FETCH ComfyRegistry Data: 90/105
+2025-11-08T16:00:47.570242417Z FETCH ComfyRegistry Data: 95/105
+2025-11-08T16:00:50.667939816Z FETCH ComfyRegistry Data: 100/105
+2025-11-08T16:00:53.730198026Z FETCH ComfyRegistry Data: 105/105
+2025-11-08T16:00:54.231415869Z FETCH ComfyRegistry Data [DONE]
+2025-11-08T16:00:55.326962226Z [ComfyUI-Manager] default cache updated: https://api.comfy.org/nodes
+2025-11-08T16:00:55.649221698Z FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json [DONE]
+2025-11-08T16:00:56.023636485Z [ComfyUI-Manager] All startup tasks have been completed.
