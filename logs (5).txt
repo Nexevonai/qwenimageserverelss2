@@ -154,4 +154,4 @@
 2025-11-08T16:00:54.231415869Z FETCH ComfyRegistry Data [DONE]
 2025-11-08T16:00:55.326962226Z [ComfyUI-Manager] default cache updated: https://api.comfy.org/nodes
 2025-11-08T16:00:55.649221698Z FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json [DONE]
-2025-11-08T16:00:56.023636485Z [ComfyUI-Manager] All startup tasks have been completed.
+2025-11-08T16:00:56.023636485Z [ComfyUI-Manager] All startup tasks have been completed. ok
