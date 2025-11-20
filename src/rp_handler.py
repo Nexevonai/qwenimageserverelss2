@@ -8,76 +8,80 @@ import boto3
 from botocore.client import Config
 from ComfyUI_API_Wrapper import ComfyUI_API_Wrapper
 
-# --- 全局常量和初始化 ---
+# --- Global Constants & Initialization ---
 COMFYUI_URL = "http://127.0.0.1:8188"
 client_id = str(uuid.uuid4())
 output_path = "/root/comfy/ComfyUI/output"
 api = ComfyUI_API_Wrapper(COMFYUI_URL, client_id, output_path)
 
-# --- 辅助函数: 下载音频文件 ---
-def download_audio(url, save_path):
-    try:
-        response = requests.get(url, stream=True, timeout=15)
-        response.raise_for_status()
-        with open(save_path, 'wb') as f:
-            for chunk in response.iter_content(chunk_size=8192):
-                f.write(chunk)
-        return True
-    except requests.exceptions.RequestException as e:
-        print(f"下载音频文件时出错: {e}")
-        return False
+# Load the workflow template at startup
+WORKFLOW_TEMPLATE_PATH = "/root/workflow_api.json"
+try:
+    with open(WORKFLOW_TEMPLATE_PATH, 'r') as f:
+        WORKFLOW_TEMPLATE = json.load(f)
+    print(f"Successfully loaded workflow template from {WORKFLOW_TEMPLATE_PATH}")
+except Exception as e:
+    print(f"Error loading workflow template: {e}")
+    WORKFLOW_TEMPLATE = None
 
 # --- RunPod Handler ---
 def handler(job):
     job_input = job.get('input', {})
 
-    # 1. 直接从输入中获取整个工作流
-    workflow = job_input.get('workflow')
-    if not workflow or not isinstance(workflow, dict):
-        return {"error": "输入错误: 'workflow' 键是必需的，且其值必须是一个有效的JSON对象。"}
+    # 1. Prepare Workflow
+    # Use the loaded template as a base, or accept a full workflow override
+    if job_input.get('workflow'):
+        workflow = job_input['workflow']
+    elif WORKFLOW_TEMPLATE:
+        workflow = json.loads(json.dumps(WORKFLOW_TEMPLATE)) # Deep copy
+    else:
+        return {"error": "No workflow provided and no template found."}
 
-    # 2. (可选) 如果提供了audio_url，就自动处理音频加载
-    if 'audio_url' in job_input:
-        audio_url = job_input['audio_url']
-        input_path = "/root/comfy/ComfyUI/input"
-        if not os.path.exists(input_path):
-            os.makedirs(input_path)
-
-        audio_filename = f"input_{uuid.uuid4()}.mp3"
-        save_path = os.path.join(input_path, audio_filename)
-
-        if not download_audio(audio_url, save_path):
-            return {"error": f"无法从指定的URL下载音频: {audio_url}"}
-
-        load_audio_node_id = None
-        for node_id, node_data in workflow.items():
-            if node_data.get("class_type") == "LoadAudio":
-                load_audio_node_id = node_id
-                break
-
-        if load_audio_node_id:
-            workflow[load_audio_node_id]["inputs"]["audio"] = audio_filename
+    # 2. Inject Inputs (Text-to-Image)
+    # Positive Prompt (Node 6)
+    if 'prompt' in job_input:
+        prompt_text = job_input['prompt']
+        if "6" in workflow and "inputs" in workflow["6"]:
+             workflow["6"]["inputs"]["text"] = prompt_text
         else:
-            return {"error": "提供了 'audio_url' 但在工作流中找不到 'LoadAudio' 节点。"}
+             print("Warning: Node 6 (Positive Prompt) not found in workflow, skipping prompt injection.")
 
-    # 3. 找到最终的输出节点 (SaveAudioMP3)
+    # Negative Prompt (Node 7) - Optional
+    if 'negative_prompt' in job_input:
+        neg_prompt_text = job_input['negative_prompt']
+        if "7" in workflow and "inputs" in workflow["7"]:
+             workflow["7"]["inputs"]["text"] = neg_prompt_text
+
+    # Seed (Node 94 or 75) - Optional
+    # If user provides seed, we update the Seed Generator (Node 94) or Sampler (Node 75)
+    if 'seed' in job_input:
+        seed_val = int(job_input['seed'])
+        # Try Node 94 (Seed Generator) first
+        if "94" in workflow and "inputs" in workflow["94"]:
+             # Usually widget_values but API format uses inputs if connected, or custom node specific.
+             # Comfy-image-saver's Seed Generator likely uses 'seed' in inputs for API.
+             workflow["94"]["inputs"]["seed"] = seed_val
+        # Fallback to Sampler (Node 75) if it has a seed input
+        elif "75" in workflow and "inputs" in workflow["75"]:
+             workflow["75"]["inputs"]["seed"] = seed_val
+
+    # 3. Find Output Node (SaveImage)
     output_node_id = None
     for node_id, node_data in workflow.items():
-        if node_data.get("class_type") == "SaveAudioMP3":
+        if node_data.get("class_type") == "SaveImage":
             output_node_id = node_id
             break
 
     if not output_node_id:
-        return {"error": "工作流中必须包含一个 'SaveAudioMP3' 节点作为输出。"}
+        return {"error": "Workflow must contain a 'SaveImage' node."}
 
     try:
-        # 4. 执行工作流
+        # 4. Execute Workflow
         output_data = api.queue_prompt_and_get_images(workflow, output_node_id)
         if not output_data:
-             return {"error": "执行超时或工作流未生成任何音频输出。"}
+             return {"error": "Execution timed out or generated no output."}
 
-        # 5. 上传音频文件到 Cloudflare R2 并返回 URL
-        # 初始化 R2 S3 客户端
+        # 5. Upload to R2/S3
         s3_client = boto3.client(
             's3',
             endpoint_url=os.environ.get('R2_ENDPOINT_URL'),
@@ -89,34 +93,32 @@ def handler(job):
         bucket_name = os.environ.get('R2_BUCKET_NAME')
         public_url_base = os.environ.get('R2_PUBLIC_URL')
 
-        audio_urls = []
-        for audio_info in output_data:
-            filename = audio_info.get("filename")
+        image_urls = []
+        for image_info in output_data:
+            filename = image_info.get("filename")
             if filename:
-                # 获取音频字节数据
-                audio_bytes = api.get_image(filename, audio_info.get("subfolder"), audio_info.get("type"))
+                image_bytes = api.get_image(filename, image_info.get("subfolder"), image_info.get("type"))
 
-                # 生成唯一的文件名
                 unique_filename = f"{uuid.uuid4()}_{filename}"
 
-                # 上传到 R2
                 s3_client.put_object(
                     Bucket=bucket_name,
                     Key=unique_filename,
-                    Body=audio_bytes,
-                    ContentType='audio/mpeg'
+                    Body=image_bytes,
+                    ContentType='image/png'
                 )
 
-                # 构建公开 URL
-                audio_url = f"{public_url_base}/{unique_filename}"
-                audio_urls.append(audio_url)
+                image_url = f"{public_url_base}/{unique_filename}"
+                image_urls.append(image_url)
 
-        return {"audio": audio_urls}
+        return {"images": image_urls}
 
     except Exception as e:
-        return {"error": f"处理过程中发生未知错误: {str(e)}"}
+        import traceback
+        print(f"Handler Error: {e}")
+        traceback.print_exc()
+        return {"error": f"Error processing request: {str(e)}"}
 
-# --- 启动 RunPod Worker ---
 if __name__ == "__main__":
-    print("ComfyUI Dynamic Workflow Worker (最终版) 启动中...")
+    print("ComfyUI Text-to-Image Worker Started")
     runpod.serverless.start({"handler": handler})
